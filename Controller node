@@ -20,8 +20,11 @@ sudo wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHN
 
 sudo wget -O /etc/memcached.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/fa4d490951b72d673e78626558875345ad6445f8/conf/memcached.conf
 
+sudo unlink /etc/nginx/sites-enabled/default
 
-sudo nano /etc/keystone/keystone.conf
+sudo systemctl restart mariadb rabbitmq-server memcached nginx 
+
+sudo apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
 PASSDB="123"
 SQL_COMMANDS="
