@@ -39,3 +39,12 @@ FLUSH PRIVILEGES;
 mysql <<< "$SQL_COMMANDS"
 //cau hinh keystone
 sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/e235a9344ea8f45433fffb42bdd091b6515d4e58/conf/keystone.conf
+
+sudo su -s /bin/bash keystone -c "keystone-manage db_sync" 
+sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
+sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone 
+sudo keystone-manage bootstrap --bootstrap-password adminpassword \
+--bootstrap-admin-url https://controller:5000/v3/ \
+--bootstrap-internal-url https://controller:5000/v3/ \
+--bootstrap-public-url https://controller:5000/v3/ \
+--bootstrap-region-id RegionOne 
