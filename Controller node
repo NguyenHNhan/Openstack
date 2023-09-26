@@ -11,8 +11,6 @@ sudo apt-get install libapache2-mod-wsgi-py3
 sudo nano /etc/keystone/keystone.conf
 
 PASSDB="123"
-
-# Lệnh SQL để triển khai
 SQL_COMMANDS="
 DROP DATABASE IF EXISTS keystone;
 CREATE DATABASE keystone;
@@ -20,6 +18,4 @@ GRANT ALL PRIVILEGES ON keystone.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB
 GRANT ALL PRIVILEGES ON keystone.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
-
-# Thực thi lệnh SQL bằng lệnh mysql
 mysql <<< "$SQL_COMMANDS"
