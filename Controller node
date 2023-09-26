@@ -18,6 +18,9 @@ sudo rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 sudo wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/12cd3a1d05f1c781a4ba2e43dce9cd9027b0857c/conf/50-server.cnf
 
+sudo wget -O /etc/memcached.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/fa4d490951b72d673e78626558875345ad6445f8/conf/memcached.conf
+
+
 sudo nano /etc/keystone/keystone.conf
 
 PASSDB="123"
