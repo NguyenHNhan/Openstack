@@ -26,6 +26,8 @@ sudo systemctl restart mariadb rabbitmq-server memcached nginx
 
 sudo apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
+
+
 PASSDB="123"
 SQL_COMMANDS="
 DROP DATABASE IF EXISTS keystone;
@@ -36,4 +38,4 @@ FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
 //cau hinh keystone
-sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/bd6ca256c630bc72a5feb6ad9d735ea914bd8cf7/conf/keystone.conf
+sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/6839a9716c899a3bf834b5164bae41eb4693b009/conf/keystone.conf
