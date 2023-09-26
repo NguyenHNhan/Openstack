@@ -5,9 +5,16 @@ sudo systemctl start mariadb
 NEWPASSDB="123"
 echo -e "$NEWPASSDB\n$NEWPASSDB\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
-sudo apt-get install keystone apache2
-sudo apt-get install libapache2-mod-wsgi-py3
+sudo apt -y install software-properties-common 
 
+sudo add-apt-repository cloud-archive:antelope
+echo ""
+sudo apt update 
+sudo apt -y upgrade 
+sudo apt -y install rabbitmq-server memcached python3-pymysql nginx libnginx-mod-stream 
+sudo rabbitmqctl add_user openstack 123
+
+sudo rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
 sudo nano /etc/keystone/keystone.conf
 
 PASSDB="123"
@@ -19,3 +26,5 @@ GRANT ALL PRIVILEGES ON keystone.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
+//cau hinh keystone
+sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/bd6ca256c630bc72a5feb6ad9d735ea914bd8cf7/conf/keystone.conf
