@@ -47,4 +47,9 @@ sudo keystone-manage bootstrap --bootstrap-password adminpassword \
 --bootstrap-admin-url https://controller:5000/v3/ \
 --bootstrap-internal-url https://controller:5000/v3/ \
 --bootstrap-public-url https://controller:5000/v3/ \
---bootstrap-region-id RegionOne 
+--bootstrap-region-id RegionOne
+
+sudo wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/0b1e7e6bdfa320260b2320f15ccc2522928f6cce/conf/apache2.conf
+
+
+sudo wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/0b1e7e6bdfa320260b2320f15ccc2522928f6cce/conf/sites-available/keystone.conf
