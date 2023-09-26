@@ -52,4 +52,7 @@ sudo keystone-manage bootstrap --bootstrap-password adminpassword \
 sudo wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/0b1e7e6bdfa320260b2320f15ccc2522928f6cce/conf/apache2.conf
 
 
-sudo wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/0b1e7e6bdfa320260b2320f15ccc2522928f6cce/conf/sites-available/keystone.conf
+sudo wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/f0bb73bef22a8262d48ed629f85dad5411e6dd5c/conf/sites-available/keystone.conf
+
+sudo a2enmod ssl 
+
