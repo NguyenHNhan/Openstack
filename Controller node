@@ -38,4 +38,4 @@ FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
 //cau hinh keystone
-sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/6839a9716c899a3bf834b5164bae41eb4693b009/conf/keystone.conf
+sudo wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/e235a9344ea8f45433fffb42bdd091b6515d4e58/conf/keystone.conf
