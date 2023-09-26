@@ -2,7 +2,7 @@
 pid-file                = /run/mysqld/mysqld.pid
 basedir                 = /usr
 
-bind-address            = 10.0.0.30 
+bind-address            = controller
 
 expire_logs_days        = 10
 max_connections = 500 
