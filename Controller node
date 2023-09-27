@@ -6,7 +6,7 @@ NEWPASSDB="123"
 echo -e "$NEWPASSDB\n$NEWPASSDB\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
 apt -y install rabbitmq-server memcached python3-pymysql 
-////
+####################
 rabbitmqctl add_user openstack 123
 #rabbitmqctl change_password openstack 123
 
@@ -22,12 +22,12 @@ PASSDB="123"
 SQL_COMMANDS="
 DROP DATABASE IF EXISTS keystone;
 CREATE DATABASE keystone;
-GRANT ALL PRIVILEGES ON keystone.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON keystone.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON keystone.* TO keystone@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON keystone.* TO keystone@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
-//cau hinh keystone
+#cau hinh keystone
 wget -O /etc/keystone/keystone.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/e235a9344ea8f45433fffb42bdd091b6515d4e58/conf/keystone.conf
 
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
