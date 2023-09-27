@@ -2,3 +2,13 @@ openstack user create --domain default --project service --password 123 cinder
  openstack role add --project service --user cinder admin 
 openstack service create --name cinderv3 --description "OpenStack Block Storage" volumev3 
 openstack endpoint create --region RegionOne volumev3 public http://controller:8776/v3/%\(tenant_id\)s 
+
+PASSDB="123"
+SQL_COMMANDS="
+DROP DATABASE IF EXISTS cinder;
+CREATE DATABASE cinder;
+GRANT ALL PRIVILEGES ON cinder.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON cinder.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+FLUSH PRIVILEGES;
+"
+mysql <<< "$SQL_COMMANDS"
