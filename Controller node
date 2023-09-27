@@ -41,13 +41,11 @@ keystone-manage bootstrap --bootstrap-password adminpassword \
 --bootstrap-public-url https://controller:5000/v3/ \
 --bootstrap-region-id RegionOne
 
-sudo wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/0b1e7e6bdfa320260b2320f15ccc2522928f6cce/conf/apache2.conf
+wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/828e2dddcfd828954ba67560eec6ab85a061531c/conf/apache2.conf
 
+systemctl restart apache2 
 
-sudo wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/f0bb73bef22a8262d48ed629f85dad5411e6dd5c/conf/sites-available/keystone.conf
-
-sudo a2enmod ssl 
-
+wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/8f10c42ffad2214576aae39ba71b62faf0eb29b7/conf/sites-available/keystone.conf
 
 export OS_PROJECT_DOMAIN_NAME=default
 export OS_USER_DOMAIN_NAME=default
