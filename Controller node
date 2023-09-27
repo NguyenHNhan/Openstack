@@ -113,7 +113,7 @@ mysql <<< "$SQL_COMMANDS"
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
-wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/fc7ae95af1d9bddcec4542246a05f8e29c5f64fd/conf/nova.conf
+wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/2fc87b6f01ada02446bea25af77e58c7f5efb153/conf/nova.conf
 
  chmod 640 /etc/nova/nova.conf 
  chgrp nova /etc/nova/nova.conf 
@@ -132,6 +132,11 @@ systemctl restart apache2
 for service in api conductor scheduler; do
 systemctl restart nova-$service
 done 
+
+apt -y install nova-compute nova-compute-kvm 
+systemctl restart nova-compute nova-novncproxy 
+
+/etc/nova/nova.conf 
 openstack compute service list 
 #horizon
 apt -y install openstack-dashboard 
