@@ -170,10 +170,14 @@ touch /etc/neutron/fwaas_driver.ini
 chmod 640 /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 
-wget -O  /etc/neutron/l3_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/1aad740e4ec6c677855a11e160284cc1ff425b1e/conf/l3_agent.ini
+wget -O /etc/neutron/l3_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/1aad740e4ec6c677855a11e160284cc1ff425b1e/conf/l3_agent.ini
 
-wget -O  /etc/neutron/dhcp_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/6c7fccbdb7eaf67a06559c4439f7a847077437f3/conf/dhcp_agent.ini
+wget -O /etc/neutron/dhcp_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/6c7fccbdb7eaf67a06559c4439f7a847077437f3/conf/dhcp_agent.ini
 
+wget -O /etc/neutron/plugins/ml2/ml2_conf.ini 
+/etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+
+/etc/nova/nova.conf 
 apt -y install openstack-dashboard 
 
 
