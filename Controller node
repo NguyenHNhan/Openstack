@@ -12,9 +12,9 @@ rabbitmqctl add_user openstack 123
 
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
 
-sudo wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/88ea2ec83e4d9def5f7f0226e9210c1cb865f18f/conf/50-server.cnf
+wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/88ea2ec83e4d9def5f7f0226e9210c1cb865f18f/conf/50-server.cnf
 
-sudo wget -O /etc/memcached.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/636dd0f593f616d13edac72764cd48748270e9fa/conf/memcached.conf
+sudo wget -O /etc/memcached.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/b087e53e23e438df45b3562240b2143e2cb3039a/conf/memcached.conf
 
 sudo unlink /etc/nginx/sites-enabled/default
 
