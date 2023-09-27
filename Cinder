@@ -12,3 +12,6 @@ GRANT ALL PRIVILEGES ON cinder.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
+ apt -y install cinder-api cinder-scheduler python3-cinderclient 
+
+/etc/cinder/cinder.conf 
