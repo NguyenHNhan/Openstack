@@ -112,7 +112,7 @@ wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openst
 
  chmod 640 /etc/nova/nova.conf 
  chgrp nova /etc/nova/nova.conf 
-wget -O /etc/placement/placement.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/8040c5fe646b79aea9b1f0dc63d7add5649d0d16/conf/placement.conf
+wget -O /etc/placement/placement.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/10ad03ca34570d577d73ba9f22e46beb4da50247/conf/placement.conf
 
 chgrp placement /etc/placement/placement.conf 
 chmod 640 /etc/placement/placement.conf 
