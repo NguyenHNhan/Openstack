@@ -41,6 +41,8 @@ keystone-manage bootstrap --bootstrap-password 123 \
 
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/828e2dddcfd828954ba67560eec6ab85a061531c/conf/apache2.conf
 
+a2enmod wsgi
+
 systemctl restart apache2 
 
 wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/406e3892a6ad044c7755d33d89e5af15995152bb/conf/sites-available/keystone.conf
