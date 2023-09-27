@@ -104,6 +104,10 @@ CREATE DATABASE nova_api;
 GRANT ALL PRIVILEGES ON nova_api.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
 GRANT ALL PRIVILEGES ON nova_api.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
 DROP DATABASE IF EXISTS placement;
+CREATE DATABASE nova_cell0;
+GRANT ALL PRIVILEGES ON nova_cell0.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+DROP DATABASE IF EXISTS placement;
 CREATE DATABASE placement;
 GRANT ALL PRIVILEGES ON placement.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
 GRANT ALL PRIVILEGES ON placement.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
@@ -144,7 +148,11 @@ openstack compute service list
 #modprobe nbd 
 #qemu-nbd --connect=/dev/nbd0 ubuntu-20.04-server-cloudimg-amd64.img 
 #mount /dev/nbd0p1 /mnt 
+
 openstack user create --domain default --project service --password servicepassword neutron 
+openstack role add --project service --user neutron admin 
+openstack service create --name neutron --description "OpenStack Networking service" network 
+openstack endpoint create --region RegionOne network public http://controller:9696 
 #horizon
 apt -y install openstack-dashboard 
 
