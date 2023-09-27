@@ -91,6 +91,24 @@ openstack service create --name nova --description "OpenStack Compute service" c
 openstack service create --name placement --description "OpenStack Compute Placement service" placement 
 openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1/%\(tenant_id\)s 
 openstack endpoint create --region RegionOne placement public http://controller:8778 
+
+PASSDB="123"
+
+SQL_COMMANDS="
+DROP DATABASE IF EXISTS nova;
+CREATE DATABASE nova;
+GRANT ALL PRIVILEGES ON nova.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+CREATE DATABASE placement;
+GRANT ALL PRIVILEGES ON placement.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON placement.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+FLUSH PRIVILEGES;
+"
+mysql <<< "$SQL_COMMANDS"
+
+apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
+""
+
 #horizon
 apt -y install openstack-dashboard 
 
