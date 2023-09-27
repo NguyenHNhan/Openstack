@@ -163,7 +163,17 @@ GRANT ALL PRIVILEGES ON neutron_ml2.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;"
 
 apt -y install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
-#horizon
+
+wget -O  /etc/neutron/neutron.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/dac963c37c5cf7b46c554c6ac7f7922144a6534a/conf/neutron.conf
+
+touch /etc/neutron/fwaas_driver.ini 
+chmod 640 /etc/neutron/{neutron.conf,fwaas_driver.ini} 
+chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini} 
+
+wget -O  /etc/neutron/l3_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/1aad740e4ec6c677855a11e160284cc1ff425b1e/conf/l3_agent.ini
+
+wget -O  /etc/neutron/dhcp_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/6c7fccbdb7eaf67a06559c4439f7a847077437f3/conf/dhcp_agent.ini
+
 apt -y install openstack-dashboard 
 
 
