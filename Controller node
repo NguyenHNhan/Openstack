@@ -108,7 +108,7 @@ mysql <<< "$SQL_COMMANDS"
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
-wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/10ad03ca34570d577d73ba9f22e46beb4da50247/conf/nova.conf
+wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/fc7ae95af1d9bddcec4542246a05f8e29c5f64fd/conf/nova.conf
 
  chmod 640 /etc/nova/nova.conf 
  chgrp nova /etc/nova/nova.conf 
