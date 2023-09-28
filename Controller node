@@ -1,5 +1,5 @@
 
-apt install mariadb-server
+yes | apt install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
 NEWPASSDB="123"
@@ -28,7 +28,7 @@ FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
 #cau hinh keystone
-wget -O /etc/keystone/keystone.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/e235a9344ea8f45433fffb42bdd091b6515d4e58/conf/keystone.conf
+wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
 
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
