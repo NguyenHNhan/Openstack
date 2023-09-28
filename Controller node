@@ -14,7 +14,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/50-server.cnf
 
-wget -O /etc/memcached.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/76fcfc7185a1737fac4f5537ff1f281971eda187/conf/memcached.conf
+wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/memcached.conf
 
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
@@ -39,13 +39,13 @@ keystone-manage bootstrap --bootstrap-password 123 \
 --bootstrap-public-url https://controller:5000/v3/ \
 --bootstrap-region-id RegionOne
 
-wget -O /etc/apache2/apache2.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/828e2dddcfd828954ba67560eec6ab85a061531c/conf/apache2.conf
+wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
 
 a2enmod wsgi
 
 systemctl restart apache2 
 
-wget -O /etc/apache2/sites-available/keystone.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/406e3892a6ad044c7755d33d89e5af15995152bb/conf/sites-available/keystone.conf
+wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/sites-available/keystone.conf
 
 export OS_PROJECT_DOMAIN_NAME=default
 export OS_USER_DOMAIN_NAME=default
