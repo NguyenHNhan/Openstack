@@ -45,7 +45,7 @@ a2enmod wsgi
 
 systemctl restart apache2 
 
-wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/sites-available/keystone.conf
+#wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/sites-available/keystone.conf
 
 export OS_PROJECT_DOMAIN_NAME=default
 export OS_USER_DOMAIN_NAME=default
