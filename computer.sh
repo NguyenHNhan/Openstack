@@ -27,9 +27,9 @@ systemctl restart openvswitch-switch ovn-controller ovn-host
 ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
 systemctl restart neutron-ovn-metadata-agent
 systemctl restart nova-compute
-ovs-vsctl set open . external-ids:ovn-remote=tcp:[10.0.0.50]:6642 #networknode
+ovs-vsctl set open . external-ids:ovn-remote=tcp:172.20.200.98:6642 #networknode
 ovs-vsctl set open . external-ids:ovn-encap-type=geneve
-ovs-vsctl set open . external-ids:ovn-encap-ip=[10.0.0.51]#computernode
+ovs-vsctl set open . external-ids:ovn-encap-ip=172.20.200.98
 
 systemctl restart nova-api
 
