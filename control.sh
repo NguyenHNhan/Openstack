@@ -141,6 +141,13 @@ chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini}
 
 wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/novaV2/nova.conf
 systemctl restart nova-api 
+
+#cinder
+openstack user create --domain default --project service --password $UOPENSTACK cinder 
+openstack role add --project service --user cinder admin 
+openstack service create --name cinderv3 --description "OpenStack Block Storage" volumev3 
+openstack endpoint create --region RegionOne volumev3 public http://$IPControl:8776/v3/%\(tenant_id\)s 
+
 apt -y install openstack-dashboard 
 
 
