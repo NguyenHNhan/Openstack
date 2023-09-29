@@ -14,8 +14,10 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 ./db.sh
 
+mv /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.org
 wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/50-server.cnf
 
+mv /etc/memcached.conf /etc/memcached.conf.org
 wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/memcached.conf
 
 systemctl restart mariadb rabbitmq-server memcached
