@@ -36,8 +36,10 @@ keystone-manage bootstrap --bootstrap-password $UOPENSTACK \
 --bootstrap-public-url http://$IPControl:5000/v3/ \
 --bootstrap-region-id RegionOne
 
+#cai dat servername
 mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
+
 
 a2enmod wsgi
 
