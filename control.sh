@@ -11,7 +11,9 @@ rabbitmqctl add_user openstack $RABBITPASS
 #rabbitmqctl change_password openstack 123
 
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
+
 ./db.sh
+
 wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/50-server.cnf
 
 wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/memcached.conf
