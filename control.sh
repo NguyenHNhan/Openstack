@@ -14,7 +14,7 @@ rabbitmqctl add_user openstack $RABBITPASS
 
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
 
-./db.sh
+bash ./db.sh
 if [ $? -ne 0 ]; then
     echo "Lệnh ./db.sh gặp lỗi"
     exit 1
