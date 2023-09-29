@@ -29,8 +29,8 @@ GRANT ALL PRIVILEGES ON placement.* TO placement@'%' IDENTIFIED BY '$USERDB';
 
 DROP DATABASE IF EXISTS neutron_ml2;
 CREATE DATABASE neutron_ml2;
-GRANT ALL PRIVILEGES ON neutron_ml2.* TO stackdb@'localhost' IDENTIFIED BY '$USERDB';
-GRANT ALL PRIVILEGES ON neutron_ml2.* TO stackdb@'%' IDENTIFIED BY '$USERDB';
+GRANT ALL PRIVILEGES ON neutron_ml2.* TO neutron@'localhost' IDENTIFIED BY '$USERDB';
+GRANT ALL PRIVILEGES ON neutron_ml2.* TO neutron@'%' IDENTIFIED BY '$USERDB';
 FLUSH PRIVILEGES;"
 
 mysql <<< "$SQL_COMMANDS"
