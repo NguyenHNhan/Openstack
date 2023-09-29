@@ -12,16 +12,16 @@ apt -y install neutron-common neutron-plugin-ml2 neutron-ovn-metadata-agent ovn-
 
 chmod 640 /etc/neutron/neutron.conf
 
- chgrp neutron /etc/neutron/neutron.conf
+chgrp neutron /etc/neutron/neutron.conf
 
-  /etc/neutron/plugins/ml2/ml2_conf.ini
+/etc/neutron/plugins/ml2/ml2_conf.ini
 
-  chmod 640 /etc/neutron/plugins/ml2/ml2_conf.ini
-  chgrp neutron /etc/neutron/plugins/ml2/ml2_conf.ini
+chmod 640 /etc/neutron/plugins/ml2/ml2_conf.ini
+chgrp neutron /etc/neutron/plugins/ml2/ml2_conf.ini
 
-  /etc/neutron/neutron_ovn_metadata_agent.ini
+/etc/neutron/neutron_ovn_metadata_agent.ini
 
-  /etc/default/openvswitch-switch
+/etc/default/openvswitch-switch
 
 systemctl restart openvswitch-switch ovn-controller ovn-host
 ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
