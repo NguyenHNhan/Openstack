@@ -24,7 +24,7 @@ systemctl restart mariadb rabbitmq-server memcached
 
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
-#cau hinh keystone
+mv /etc/keystone/keystone.conf /etc/keystone/keystone.org
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
 
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
@@ -36,6 +36,7 @@ keystone-manage bootstrap --bootstrap-password 123 \
 --bootstrap-public-url http://172.20.200.7:5000/v3/ \
 --bootstrap-region-id RegionOne
 
+mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
 
 a2enmod wsgi
