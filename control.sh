@@ -40,7 +40,6 @@ keystone-manage bootstrap --bootstrap-password $UOPENSTACK \
 mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
 
-
 a2enmod wsgi
 
 systemctl restart apache2 
