@@ -64,7 +64,9 @@ openstack endpoint create --region RegionOne image public http://$IPControl:9292
 
 
 sudo apt-get install glance
+mv /etc/glance/glance-api.conf /etc/glance/glance-api.org
 wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/glance-api.conf
+
 chmod 640 /etc/glance/glance-api.conf 
 chown root:glance /etc/glance/glance-api.conf 
 su -s /bin/bash glance -c "glance-manage db_sync" 
@@ -115,17 +117,23 @@ openstack endpoint create --region RegionOne network public http://$IPControl:96
 
 apt -y install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
+mv /etc/neutron/neutron.conf /etc/neutron/neutron.org
 wget -O  /etc/neutron/neutron.conf https://github/NguyenHNhan/Openstack/raw/main/conf/neutron.conf
 
 touch /etc/neutron/fwaas_driver.ini 
 chmod 640 /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 
+mv /etc/neutron/l3_agent.ini /etc/neutron/l3_agent.org
 wget -O /etc/neutron/l3_agent.ini https://github/NguyenHNhan/Openstack/raw/main/conf/l3_agent.ini
 
+mv /etc/neutron/dhcp_agent.ini /etc/neutron/dhcp_agent.org
 wget -O /etc/neutron/dhcp_agent.ini https://github/NguyenHNhan/Openstack/raw/main/conf/dhcp_agent.ini
 
+mv /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.org
 wget -O /etc/neutron/plugins/ml2/ml2_conf.ini 
+
+mv /etc/neutron/plugins/ml2/linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.org
 /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
 
 /etc/nova/nova.conf 
