@@ -2,13 +2,16 @@ source config.conf
 sudo apt update
 sudo apt upgrade -y
 yes | apt install mariadb-server
+""
+""
 systemctl enable mariadb
 systemctl start mariadb
 #MARIAPASS="123"
 echo -e "$MARIAPASS\n$MARIAPASS\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
 apt -y install rabbitmq-server memcached python3-pymysql 
-
+""
+""
 rabbitmqctl add_user openstack $RABBITPASS
 #rabbitmqctl change_password openstack 123
 
@@ -29,7 +32,8 @@ wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/co
 systemctl restart mariadb rabbitmq-server memcached
 
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
-
+""
+""
 mv /etc/keystone/keystone.conf /etc/keystone/keystone.org
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/keystone.conf
 
@@ -47,7 +51,8 @@ mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/apache2.conf
 
 a2enmod wsgi
-
+""
+""
 systemctl restart apache2 
 
 #wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/sites-available/keystone.conf
@@ -100,7 +105,8 @@ systemctl restart nova-novncproxy
 openstack compute service list 
 
 apt -y install neutron-server 
-
+""
+""
 #neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
 mv /etc/neutron/neutron.conf /etc/neutron/neutron.org
@@ -141,7 +147,8 @@ systemctl enable cinder-scheduler
 export OS_VOLUME_API_VERSION=3
 
 apt -y install openstack-dashboard 
-
+""
+""
 systemctl restart apache2 
 cat <<EOL > openstack_vars.sh
 export OS_PROJECT_DOMAIN_NAME=$OS_PROJECT_DOMAIN_NAME
