@@ -137,7 +137,9 @@ for service in api conductor scheduler; do
 systemctl restart nova-$service
 done 
 
+systemctl restart nova-novncproxy 
 
+openstack compute service list 
 #create img
 #wget http://cloud-images.ubuntu.com/releases/20.04/release/ubuntu-20.04-server-cloudimg-amd64.img 
 #modprobe nbd 
