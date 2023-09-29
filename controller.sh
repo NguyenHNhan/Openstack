@@ -75,7 +75,7 @@ FLUSH PRIVILEGES;
 mysql <<< "$SQL_COMMANDS"
 
 sudo apt-get install glance
-wget -O /etc/glance/glance-api.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/a9270b524a9610e164dbb3e8bc7b4f2c45b62c90/conf/glance-api.conf
+wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/glance-api.conf
 chmod 640 /etc/glance/glance-api.conf 
 chown root:glance /etc/glance/glance-api.conf 
 su -s /bin/bash glance -c "glance-manage db_sync" 
@@ -117,11 +117,11 @@ mysql <<< "$SQL_COMMANDS"
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
-wget -O /etc/nova/nova.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/2fc87b6f01ada02446bea25af77e58c7f5efb153/conf/nova.conf
+wget -O /etc/nova/nova.conf https://github/NguyenHNhan/Openstack/raw/main/conf/nova.conf
 
  chmod 640 /etc/nova/nova.conf 
  chgrp nova /etc/nova/nova.conf 
-wget -O /etc/placement/placement.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/10ad03ca34570d577d73ba9f22e46beb4da50247/conf/placement.conf
+wget -O /etc/placement/placement.conf https://github/NguyenHNhan/Openstack/raw/main/conf/placement.conf
 
 chgrp placement /etc/placement/placement.conf 
 chmod 640 /etc/placement/placement.conf 
@@ -164,15 +164,15 @@ FLUSH PRIVILEGES;"
 
 apt -y install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
-wget -O  /etc/neutron/neutron.conf https://raw.githubusercontent.com/NguyenHNhan/Openstack/dac963c37c5cf7b46c554c6ac7f7922144a6534a/conf/neutron.conf
+wget -O  /etc/neutron/neutron.conf https://github/NguyenHNhan/Openstack/raw/main/conf/neutron.conf
 
 touch /etc/neutron/fwaas_driver.ini 
 chmod 640 /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini} 
 
-wget -O /etc/neutron/l3_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/1aad740e4ec6c677855a11e160284cc1ff425b1e/conf/l3_agent.ini
+wget -O /etc/neutron/l3_agent.ini https://github/NguyenHNhan/Openstack/raw/main/conf/l3_agent.ini
 
-wget -O /etc/neutron/dhcp_agent.ini https://raw.githubusercontent.com/NguyenHNhan/Openstack/6c7fccbdb7eaf67a06559c4439f7a847077437f3/conf/dhcp_agent.ini
+wget -O /etc/neutron/dhcp_agent.ini https://github/NguyenHNhan/Openstack/raw/main/conf/dhcp_agent.ini
 
 wget -O /etc/neutron/plugins/ml2/ml2_conf.ini 
 /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
