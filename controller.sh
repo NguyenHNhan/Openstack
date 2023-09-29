@@ -1,4 +1,4 @@
-
+source config.conf
 yes | apt install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
@@ -6,8 +6,8 @@ systemctl start mariadb
 echo -e "$MARIAPASS\n$MARIAPASS\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
 apt -y install rabbitmq-server memcached python3-pymysql 
-####################
-rabbitmqctl add_user openstack 123
+
+rabbitmqctl add_user openstack $RABBITPASS
 #rabbitmqctl change_password openstack 123
 
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
