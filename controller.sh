@@ -63,13 +63,13 @@ openstack project create --domain default --description "Service Project" servic
 openstack user create --domain default --project service --password 123 glance 
 openstack role add --project service --user glance admin 
 openstack service create --name glance --description "OpenStack Image service" image
- openstack endpoint create --region RegionOne image public http://controller:9292
+openstack endpoint create --region RegionOne image public http://172.20.200.7:9292
 
 SQL_COMMANDS="
 DROP DATABASE IF EXISTS glance;
 CREATE DATABASE glance;
-GRANT ALL PRIVILEGES ON glance.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON glance.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON glance.* TO glance@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON glance.* TO glance@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
@@ -89,28 +89,28 @@ openstack user create --domain default --project service --password 123 placemen
 openstack role add --project service --user placement admin 
 openstack service create --name nova --description "OpenStack Compute service" compute 
 openstack service create --name placement --description "OpenStack Compute Placement service" placement 
-openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1/%\(tenant_id\)s 
-openstack endpoint create --region RegionOne placement public http://controller:8778 
+openstack endpoint create --region RegionOne compute public http://172.20.200.7:8774/v2.1/%\(tenant_id\)s 
+openstack endpoint create --region RegionOne placement public http://172.20.200.7:8778 
 
 PASSDB="123"
 
 SQL_COMMANDS="
 DROP DATABASE IF EXISTS nova;
 CREATE DATABASE nova;
-GRANT ALL PRIVILEGES ON nova.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova.* TO nova@'%' IDENTIFIED BY '$PASSDB';
 DROP DATABASE IF EXISTS nova_api;
 CREATE DATABASE nova_api;
-GRANT ALL PRIVILEGES ON nova_api.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova_api.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova_api.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova_api.* TO nova@'%' IDENTIFIED BY '$PASSDB';
 DROP DATABASE IF EXISTS placement;
 CREATE DATABASE nova_cell0;
-GRANT ALL PRIVILEGES ON nova_cell0.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova_cell0.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO nova@'%' IDENTIFIED BY '$PASSDB';
 DROP DATABASE IF EXISTS placement;
 CREATE DATABASE placement;
-GRANT ALL PRIVILEGES ON placement.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON placement.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON placement.* TO placement@'localhost' IDENTIFIED BY '$PASSDB';
+GRANT ALL PRIVILEGES ON placement.* TO placement@'%' IDENTIFIED BY '$PASSDB';
 FLUSH PRIVILEGES;
 "
 mysql <<< "$SQL_COMMANDS"
@@ -119,8 +119,8 @@ apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-
 ""
 wget -O /etc/nova/nova.conf https://github/NguyenHNhan/Openstack/raw/main/conf/nova.conf
 
- chmod 640 /etc/nova/nova.conf 
- chgrp nova /etc/nova/nova.conf 
+chmod 640 /etc/nova/nova.conf 
+chgrp nova /etc/nova/nova.conf 
 wget -O /etc/placement/placement.conf https://github/NguyenHNhan/Openstack/raw/main/conf/placement.conf
 
 chgrp placement /etc/placement/placement.conf 
@@ -137,11 +137,6 @@ for service in api conductor scheduler; do
 systemctl restart nova-$service
 done 
 
-apt -y install nova-compute nova-compute-kvm 
-systemctl restart nova-compute nova-novncproxy 
-
-/etc/nova/nova.conf 
-openstack compute service list 
 
 #create img
 #wget http://cloud-images.ubuntu.com/releases/20.04/release/ubuntu-20.04-server-cloudimg-amd64.img 
