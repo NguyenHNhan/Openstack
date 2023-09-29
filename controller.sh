@@ -29,7 +29,7 @@ FLUSH PRIVILEGES;
 mysql <<< "$SQL_COMMANDS"
 #cau hinh keystone
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
-
+systemctl restart apache2
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
 keystone-manage credential_setup --keystone-user keystone --keystone-group keystone 
@@ -56,6 +56,7 @@ export OS_AUTH_URL=https://172.20.200.7:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 
+openstack project create --domain default --description "Service Project" service
 #glancle
 openstack user create --domain default --project service --password 123 glance 
 openstack role add --project service --user glance admin 
