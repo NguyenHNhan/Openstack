@@ -148,6 +148,9 @@ openstack role add --project service --user cinder admin
 openstack service create --name cinderv3 --description "OpenStack Block Storage" volumev3 
 openstack endpoint create --region RegionOne volumev3 public http://$IPControl:8776/v3/%\(tenant_id\)s 
 
+mv /etc/cinder/cinder.conf /etc/cinder/cinder.conf.org
+wget -O /etc/cinder/cinder.conf 
+
 apt -y install openstack-dashboard 
 
 
