@@ -36,9 +36,9 @@ su -s /bin/bash keystone -c "keystone-manage db_sync"
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
 keystone-manage credential_setup --keystone-user keystone --keystone-group keystone 
 keystone-manage bootstrap --bootstrap-password 123 \
---bootstrap-admin-url https://172.20.200.7:5000/v3/ \
---bootstrap-internal-url https://172.20.200.7:5000/v3/ \
---bootstrap-public-url https://172.20.200.7:5000/v3/ \
+--bootstrap-admin-url http://172.20.200.7:5000/v3/ \
+--bootstrap-internal-url http://172.20.200.7:5000/v3/ \
+--bootstrap-public-url http://172.20.200.7:5000/v3/ \
 --bootstrap-region-id RegionOne
 
 wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
@@ -54,7 +54,7 @@ export OS_USER_DOMAIN_NAME=default
 export OS_PROJECT_NAME=admin
 export OS_USERNAME=admin
 export OS_PASSWORD=123
-export OS_AUTH_URL=https://172.20.200.7:5000/v3
+export OS_AUTH_URL=http://172.20.200.7:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 
