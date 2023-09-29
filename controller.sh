@@ -31,7 +31,7 @@ FLUSH PRIVILEGES;
 mysql <<< "$SQL_COMMANDS"
 #cau hinh keystone
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
-reboot
+
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
 keystone-manage credential_setup --keystone-user keystone --keystone-group keystone 
