@@ -1,4 +1,6 @@
 source config.conf
+sudo apt update
+sudo apt upgrade -y
 yes | apt install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
