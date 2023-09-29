@@ -7,3 +7,6 @@ USERDB="123"
 #MAT KHAU USER OPENSTACK
 UOPENSTACK="123"
 ######################
+#MAT KHAU RABBITMQ
+$RABBITPASS
+######################
