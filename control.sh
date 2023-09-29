@@ -15,17 +15,17 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 ./db.sh
 
 mv /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.org
-wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/50-server.cnf
+wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/50-server.cnf
 
 mv /etc/memcached.conf /etc/memcached.conf.org
-wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/memcached.conf
+wget -O /etc/memcached.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/memcached.conf
 
 systemctl restart mariadb rabbitmq-server memcached
 
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
 mv /etc/keystone/keystone.conf /etc/keystone/keystone.org
-wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
+wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/keystone.conf
 
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
@@ -38,7 +38,7 @@ keystone-manage bootstrap --bootstrap-password $UOPENSTACK \
 
 #cai dat servername
 mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
-wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/apache2.conf
+wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/apache2.conf
 
 a2enmod wsgi
 
@@ -66,7 +66,7 @@ openstack endpoint create --region RegionOne image public http://$IPControl:9292
 
 sudo apt-get install glance
 mv /etc/glance/glance-api.conf /etc/glance/glance-api.org
-wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/glance-api.conf
+wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/glance-api.conf
 
 chmod 640 /etc/glance/glance-api.conf 
 chown root:glance /etc/glance/glance-api.conf 
@@ -86,11 +86,11 @@ openstack endpoint create --region RegionOne placement public http://$IPControl:
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
-wget -O /etc/nova/nova.conf https://github/NguyenHNhan/Openstack/raw/main/conf/nova.conf
+wget -O /etc/nova/nova.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/nova.conf
 
 chmod 640 /etc/nova/nova.conf 
 chgrp nova /etc/nova/nova.conf 
-wget -O /etc/placement/placement.conf https://github/NguyenHNhan/Openstack/raw/main/conf/placement.conf
+wget -O /etc/placement/placement.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/placement.conf
 
 chgrp placement /etc/placement/placement.conf 
 chmod 640 /etc/placement/placement.conf 
@@ -121,7 +121,7 @@ apt -y install neutron-server
 #neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
 mv /etc/neutron/neutron.conf /etc/neutron/neutron.org
-wget -O  /etc/neutron/neutron.conf https://github/NguyenHNhan/Openstack/raw/main/conf/neutron.conf
+wget -O  /etc/neutron/neutron.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/neutron.conf
 
 touch /etc/neutron/fwaas_driver.ini 
 chmod 640 /etc/neutron/{neutron.conf,fwaas_driver.ini} 
@@ -139,7 +139,8 @@ chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini}
 #mv /etc/neutron/plugins/ml2/linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.org
 #/etc/neutron/plugins/ml2/linuxbridge_agent.ini 
 
-/etc/nova/nova.conf 
+wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/novaV2/nova.conf
+systemctl restart nova-api 
 apt -y install openstack-dashboard 
 
 
