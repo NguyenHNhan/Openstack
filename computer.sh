@@ -30,3 +30,9 @@ systemctl restart nova-compute
 ovs-vsctl set open . external-ids:ovn-remote=tcp:[10.0.0.50]:6642 #networknode
 ovs-vsctl set open . external-ids:ovn-encap-type=geneve
 ovs-vsctl set open . external-ids:ovn-encap-ip=[10.0.0.51]#computernode
+
+systemctl restart nova-api
+
+
+
+
