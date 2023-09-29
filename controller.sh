@@ -52,13 +52,10 @@ export OS_USER_DOMAIN_NAME=default
 export OS_PROJECT_NAME=admin
 export OS_USERNAME=admin
 export OS_PASSWORD=123
-export OS_AUTH_URL=https://controller:5000/v3
+export OS_AUTH_URL=https://172.20.200.7:5000/v3
 export OS_IDENTITY_API_VERSION=3
-#export OS_IMAGE_API_VERSION=3
-#nova-api
-apt-get install nova-api
-systemctl restart nova-api
-systemctl enable nova-api
+export OS_IMAGE_API_VERSION=2
+
 #glancle
 openstack user create --domain default --project service --password 123 glance 
 openstack role add --project service --user glance admin 
