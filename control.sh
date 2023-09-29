@@ -55,14 +55,7 @@ export OS_AUTH_URL=http://$IPControl:5000/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 
-openstack project create --domain default --description "Service Project" service
-#glancle
-openstack user create --domain default --project service --password $UOPENSTACK glance 
-openstack role add --project service --user glance admin 
-openstack service create --name glance --description "OpenStack Image service" image
-openstack endpoint create --region RegionOne image public http://$IPControl:9292
-
-
+openstack project create --domain default --description "Service Project" service && ./user_service.sh
 
 yes | apt-get install glance
 mv /etc/glance/glance-api.conf /etc/glance/glance-api.org
@@ -73,16 +66,6 @@ chown root:glance /etc/glance/glance-api.conf
 su -s /bin/bash glance -c "glance-manage db_sync" 
 systemctl restart glance-api 
 systemctl enable glance-api 
-
-#nova and placement 
-openstack user create --domain default --project service --password $UOPENSTACK nova 
-openstack role add --project service --user nova admin 
-openstack user create --domain default --project service --password $UOPENSTACK placement 
-openstack role add --project service --user placement admin 
-openstack service create --name nova --description "OpenStack Compute service" compute 
-openstack service create --name placement --description "OpenStack Compute Placement service" placement 
-openstack endpoint create --region RegionOne compute public http://$IPControl:8774/v2.1/%\(tenant_id\)s 
-openstack endpoint create --region RegionOne placement public http://$IPControl:8778 
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
@@ -110,12 +93,6 @@ systemctl restart nova-novncproxy
 
 openstack compute service list 
 
-#neutron
-openstack user create --domain default --project service --password $UOPENSTACK neutron 
-openstack role add --project service --user neutron admin 
-openstack service create --name neutron --description "OpenStack Networking service" network 
-openstack endpoint create --region RegionOne network public http://$IPControl:9696 
-
 apt -y install neutron-server 
 
 #neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
@@ -141,12 +118,6 @@ chgrp neutron /etc/neutron/{neutron.conf,fwaas_driver.ini}
 
 wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/novaV2/nova.conf
 systemctl restart nova-api 
-
-#cinder
-openstack user create --domain default --project service --password $UOPENSTACK cinder 
-openstack role add --project service --user cinder admin 
-openstack service create --name cinderv3 --description "OpenStack Block Storage" volumev3 
-openstack endpoint create --region RegionOne volumev3 public http://$IPControl:8776/v3/%\(tenant_id\)s 
 
 mv /etc/cinder/cinder.conf /etc/cinder/cinder.conf.org
 wget -O /etc/cinder/cinder.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/cinder.conf
