@@ -64,7 +64,7 @@ openstack endpoint create --region RegionOne image public http://$IPControl:9292
 
 
 
-sudo apt-get install glance
+yes | apt-get install glance
 mv /etc/glance/glance-api.conf /etc/glance/glance-api.org
 wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/glance-api.conf
 
