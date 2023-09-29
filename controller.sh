@@ -2,8 +2,8 @@
 yes | apt install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
-NEWPASSDB="123"
-echo -e "$NEWPASSDB\n$NEWPASSDB\ny\ny\ny\ny\n" | sudo mysql_secure_installation
+#MARIAPASS="123"
+echo -e "$MARIAPASS\n$MARIAPASS\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
 apt -y install rabbitmq-server memcached python3-pymysql 
 ####################
