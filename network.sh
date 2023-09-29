@@ -14,7 +14,8 @@ wget -O /etc/neutron/plugins/ml2/ml2_conf.ini https://github.com/NguyenHNhan/Ope
 
 wget -O /etc/neutron/metadata_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/metadata_agent.ini
 
-/etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+wget -O /etc/neutron/plugins/ml2/ml2_conf.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/ml2_conf.ini
+wget -O /etc/neutron/plugins/ml2/linuxbridge_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/linuxbridge_agent.ini
 
 /etc/nova/nova.conf
 
