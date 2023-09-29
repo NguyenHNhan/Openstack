@@ -6,13 +6,15 @@ chmod 640 /etc/neutron/neutron.conf
 
 chgrp neutron /etc/neutron/neutron.conf
 
-wget -O /etc/neutron/l3_agent.ini https://github.com/NguyenHNhan/Openstack/blob/7da6465985c603ca25fcdc48ccab0530336a4358/conf/network/l3_agent.ini
+wget -O /etc/neutron/l3_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/l3_agent.ini
 
-wget -O /etc/neutron/dhcp_agent.ini https://github.com/NguyenHNhan/Openstack/blob/7da6465985c603ca25fcdc48ccab0530336a4358/conf/network/dhcp_agent.ini
+wget -O /etc/neutron/dhcp_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/dhcp_agent.ini
 
-/etc/neutron/plugins/ml2/ml2_conf.ini 
+wget -O /etc/neutron/plugins/ml2/ml2_conf.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/dhcp_agent.ini
 
-/etc/neutron/plugins/ml2/linuxbridge_agent.ini
+wget -O /etc/neutron/metadata_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/metadata_agent.ini
+
+/etc/neutron/plugins/ml2/linuxbridge_agent.ini 
 
 /etc/nova/nova.conf
 
