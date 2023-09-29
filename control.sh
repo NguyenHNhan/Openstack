@@ -151,6 +151,18 @@ openstack endpoint create --region RegionOne volumev3 public http://$IPControl:8
 mv /etc/cinder/cinder.conf /etc/cinder/cinder.conf.org
 wget -O /etc/cinder/cinder.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/cinder.conf
 
+chmod 640 /etc/cinder/cinder.conf
+
+chgrp cinder /etc/cinder/cinder.conf
+
+su -s /bin/bash cinder -c "cinder-manage db sync"
+
+systemctl restart cinder-scheduler
+
+systemctl enable cinder-scheduler
+
+export OS_VOLUME_API_VERSION=3
+
 apt -y install openstack-dashboard 
 
 
