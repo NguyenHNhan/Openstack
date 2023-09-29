@@ -13,6 +13,10 @@ rabbitmqctl add_user openstack $RABBITPASS
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
 
 ./db.sh
+if [ $? -ne 0 ]; then
+    echo "Lệnh ./db.sh gặp lỗi"
+    exit 1
+fi
 
 mv /etc/mysql/mariadb.conf.d/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf.org
 wget -O /etc/mysql/mariadb.conf.d/50-server.cnf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/50-server.cnf
