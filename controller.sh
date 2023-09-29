@@ -20,15 +20,6 @@ systemctl restart mariadb rabbitmq-server memcached
 
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 
-PASSDB="123"
-SQL_COMMANDS="
-DROP DATABASE IF EXISTS keystone;
-CREATE DATABASE keystone;
-GRANT ALL PRIVILEGES ON keystone.* TO keystone@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON keystone.* TO keystone@'%' IDENTIFIED BY '$PASSDB';
-FLUSH PRIVILEGES;
-"
-mysql <<< "$SQL_COMMANDS"
 #cau hinh keystone
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/keystone.conf
 
@@ -65,14 +56,7 @@ openstack role add --project service --user glance admin
 openstack service create --name glance --description "OpenStack Image service" image
 openstack endpoint create --region RegionOne image public http://172.20.200.7:9292
 
-SQL_COMMANDS="
-DROP DATABASE IF EXISTS glance;
-CREATE DATABASE glance;
-GRANT ALL PRIVILEGES ON glance.* TO glance@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON glance.* TO glance@'%' IDENTIFIED BY '$PASSDB';
-FLUSH PRIVILEGES;
-"
-mysql <<< "$SQL_COMMANDS"
+
 
 sudo apt-get install glance
 wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/glance-api.conf
@@ -91,29 +75,6 @@ openstack service create --name nova --description "OpenStack Compute service" c
 openstack service create --name placement --description "OpenStack Compute Placement service" placement 
 openstack endpoint create --region RegionOne compute public http://172.20.200.7:8774/v2.1/%\(tenant_id\)s 
 openstack endpoint create --region RegionOne placement public http://172.20.200.7:8778 
-
-PASSDB="123"
-
-SQL_COMMANDS="
-DROP DATABASE IF EXISTS nova;
-CREATE DATABASE nova;
-GRANT ALL PRIVILEGES ON nova.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova.* TO nova@'%' IDENTIFIED BY '$PASSDB';
-DROP DATABASE IF EXISTS nova_api;
-CREATE DATABASE nova_api;
-GRANT ALL PRIVILEGES ON nova_api.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova_api.* TO nova@'%' IDENTIFIED BY '$PASSDB';
-DROP DATABASE IF EXISTS placement;
-CREATE DATABASE nova_cell0;
-GRANT ALL PRIVILEGES ON nova_cell0.* TO nova@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON nova_cell0.* TO nova@'%' IDENTIFIED BY '$PASSDB';
-DROP DATABASE IF EXISTS placement;
-CREATE DATABASE placement;
-GRANT ALL PRIVILEGES ON placement.* TO placement@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON placement.* TO placement@'%' IDENTIFIED BY '$PASSDB';
-FLUSH PRIVILEGES;
-"
-mysql <<< "$SQL_COMMANDS"
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
 ""
@@ -151,13 +112,6 @@ openstack user create --domain default --project service --password servicepassw
 openstack role add --project service --user neutron admin 
 openstack service create --name neutron --description "OpenStack Networking service" network 
 openstack endpoint create --region RegionOne network public http://controller:9696 
-
-SQL_COMMANDS="
-DROP DATABASE IF EXISTS neutron_ml2;
-CREATE DATABASE neutron_ml2;
-GRANT ALL PRIVILEGES ON neutron_ml2.* TO stackdb@'localhost' IDENTIFIED BY '$PASSDB';
-GRANT ALL PRIVILEGES ON neutron_ml2.* TO stackdb@'%' IDENTIFIED BY '$PASSDB';
-FLUSH PRIVILEGES;"
 
 apt -y install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
