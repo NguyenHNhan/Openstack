@@ -51,7 +51,7 @@ export OS_IMAGE_API_VERSION=2
 
 openstack project create --domain default --description "Service Project" service
 #glancle
-openstack user create --domain default --project service --password 123 glance 
+openstack user create --domain default --project service --password $UOPENSTACK glance 
 openstack role add --project service --user glance admin 
 openstack service create --name glance --description "OpenStack Image service" image
 openstack endpoint create --region RegionOne image public http://172.20.200.7:9292
@@ -67,9 +67,9 @@ systemctl restart glance-api
 systemctl enable glance-api 
 
 #nova and placement 
-openstack user create --domain default --project service --password 123 nova 
+openstack user create --domain default --project service --password $UOPENSTACK nova 
 openstack role add --project service --user nova admin 
-openstack user create --domain default --project service --password 123 placement 
+openstack user create --domain default --project service --password $UOPENSTACK placement 
 openstack role add --project service --user placement admin 
 openstack service create --name nova --description "OpenStack Compute service" compute 
 openstack service create --name placement --description "OpenStack Compute Placement service" placement 
@@ -101,17 +101,12 @@ done
 systemctl restart nova-novncproxy 
 
 openstack compute service list 
-#create img
-#wget http://cloud-images.ubuntu.com/releases/20.04/release/ubuntu-20.04-server-cloudimg-amd64.img 
-#modprobe nbd 
-#qemu-nbd --connect=/dev/nbd0 ubuntu-20.04-server-cloudimg-amd64.img 
-#mount /dev/nbd0p1 /mnt 
 
 #neutron
-openstack user create --domain default --project service --password servicepassword neutron 
+openstack user create --domain default --project service --password $UOPENSTACK neutron 
 openstack role add --project service --user neutron admin 
 openstack service create --name neutron --description "OpenStack Networking service" network 
-openstack endpoint create --region RegionOne network public http://controller:9696 
+openstack endpoint create --region RegionOne network public http://172.20.200.7:9696 
 
 apt -y install neutron-server neutron-plugin-ml2 neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent python3-neutronclient 
 
