@@ -1,5 +1,6 @@
 apt -y install nova-compute nova-compute-kvm
 
+wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/conf/nova.conf
 systemctl restart nova-compute
 
 su -s /bin/bash nova -c "nova-manage cell_v2 discover_hosts"
