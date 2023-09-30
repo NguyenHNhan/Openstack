@@ -18,6 +18,13 @@ chgrp neutron /etc/neutron/neutron.conf
 
 wget -O /etc/neutron/plugins/ml2/ml2_conf.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/conf/ml2_conf.ini
 wget -O /etc/neutron/plugins/ml2/linuxbridge_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/conf/linuxbridge_agent.ini
+
+ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
+
+systemctl restart nova-compute neutron-linuxbridge-agent
+
+systemctl enable neutron-linuxbridge-agent 
+
 #network
 apt -y install neutron-common neutron-plugin-ml2 neutron-ovn-metadata-agent ovn-host openvswitch-switch
 /etc/neutron/neutron.conf
