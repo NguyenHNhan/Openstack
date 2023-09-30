@@ -1,3 +1,4 @@
+https://chat.openai.com/share/94c1a0af-0f49-43ad-afdc-7b981a6964c5
 source config.conf
 sudo apt update
 sudo apt upgrade -y
