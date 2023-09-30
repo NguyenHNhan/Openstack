@@ -19,7 +19,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 bash ./db.sh
 if [ $? -ne 0 ]; then
-    echo "Lệnh ./db.sh gặp lỗi"
+    echo "bash ./db.sh error"
     exit 1
 fi
 
