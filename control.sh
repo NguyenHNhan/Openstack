@@ -30,6 +30,7 @@ systemctl restart mariadb rabbitmq-server memcached
 apt -y install keystone python3-openstackclient apache2 libapache2-mod-wsgi-py3 python3-oauth2client 
 mv /etc/keystone/keystone.conf /etc/keystone/keystone.org
 wget -O /etc/keystone/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/keystone.conf
+sudo service apache2 restart
 
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
