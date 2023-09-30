@@ -139,8 +139,7 @@ systemctl enable cinder-scheduler
 export OS_VOLUME_API_VERSION=3
 
 apt -y install openstack-dashboard 
-""
-""
+
 systemctl restart apache2 
 cat <<EOL > openstack_vars.sh
 export OS_PROJECT_DOMAIN_NAME=$OS_PROJECT_DOMAIN_NAME
