@@ -72,7 +72,7 @@ systemctl restart glance-api
 systemctl enable glance-api 
 
 apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
-""
+
 wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/nova.conf
 
 chmod 640 /etc/nova/nova.conf 
