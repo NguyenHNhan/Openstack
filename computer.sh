@@ -6,6 +6,17 @@ su -s /bin/bash nova -c "nova-manage cell_v2 discover_hosts"
 
 openstack compute service list
 
+apt -y install neutron-common neutron-plugin-ml2 neutron-linuxbridge-agent 
+
+mv /etc/neutron/neutron.conf /etc/neutron/neutron.conf.org 
+wget -O /etc/neutron/neutron.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/neutron.conf
+
+chmod 640 /etc/neutron/neutron.conf
+
+chgrp neutron /etc/neutron/neutron.conf
+
+/etc/neutron/plugins/ml2/ml2_conf.ini 
+
 #network
 apt -y install neutron-common neutron-plugin-ml2 neutron-ovn-metadata-agent ovn-host openvswitch-switch
 /etc/neutron/neutron.conf
