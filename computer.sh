@@ -15,8 +15,8 @@ chmod 640 /etc/neutron/neutron.conf
 
 chgrp neutron /etc/neutron/neutron.conf
 
-/etc/neutron/plugins/ml2/ml2_conf.ini 
-
+wget -O /etc/neutron/plugins/ml2/ml2_conf.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/conf/ml2_conf.ini
+wget -O /etc/neutron/plugins/ml2/linuxbridge_agent.ini https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/conf/linuxbridge_agent.ini
 #network
 apt -y install neutron-common neutron-plugin-ml2 neutron-ovn-metadata-agent ovn-host openvswitch-switch
 /etc/neutron/neutron.conf
