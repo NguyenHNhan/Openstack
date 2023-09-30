@@ -63,7 +63,7 @@ openstack project create --domain default --description "Service Project" servic
 
 yes | apt-get install glance
 mv /etc/glance/glance-api.conf /etc/glance/glance-api.org
-wget -O /etc/glance/glance-api.conf https://github/NguyenHNhan/Openstack/raw/main/conf/control/glance-api.conf
+wget -O /etc/glance/glance-api.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/glance-api.conf
 
 chmod 640 /etc/glance/glance-api.conf 
 chown root:glance /etc/glance/glance-api.conf 
