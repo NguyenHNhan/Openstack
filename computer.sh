@@ -9,7 +9,7 @@ openstack compute service list
 apt -y install neutron-common neutron-plugin-ml2 neutron-linuxbridge-agent 
 
 mv /etc/neutron/neutron.conf /etc/neutron/neutron.conf.org 
-wget -O /etc/neutron/neutron.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/network/neutron.conf
+wget -O /etc/neutron/neutron.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/computer/neutron.conf
 
 chmod 640 /etc/neutron/neutron.conf
 
