@@ -1,0 +1,33 @@
+[DEFAULT]
+# define IP address
+my_ip = 172.20.200.96
+rootwrap_config = /etc/cinder/rootwrap.conf
+api_paste_confg = /etc/cinder/api-paste.ini
+state_path = /var/lib/cinder
+auth_strategy = keystone
+# RabbitMQ connection info
+transport_url = rabbit://openstack:123@172.20.200.7
+enable_v3_api = True
+# Glance connection info
+glance_api_servers = http://172.20.200.7:9292
+# OK with empty value now
+enabled_backends =
+
+# MariaDB connection info
+[database]
+connection = mysql+pymysql://cinder:123@172.20.200.7/cinder
+
+# Keystone auth info
+[keystone_authtoken]
+www_authenticate_uri = http://172.20.200.7:5000
+auth_url = http://172.20.200.7:5000
+memcached_servers = 172.20.200.7:11211
+auth_type = password
+project_domain_name = default
+user_domain_name = default
+project_name = service
+username = cinder
+password = 123
+
+[oslo_concurrency]
+lock_path = $state_path/tmp
