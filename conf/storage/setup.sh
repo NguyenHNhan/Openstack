@@ -7,3 +7,7 @@ chmod 640 /etc/cinder/cinder.conf
 chgrp cinder /etc/cinder/cinder.conf
 systemctl restart cinder-volume
 systemctl enable cinder-volume
+
+apt -y install targetcli-fb python3-rtslib-fb
+
+systemctl restart cinder-volume
