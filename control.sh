@@ -93,6 +93,7 @@ done
 
 systemctl restart nova-novncproxy nova-compute
 
+apt -y install cinder-api cinder-scheduler python3-cinderclient 
 mv /etc/cinder/cinder.conf /etc/cinder/cinder.conf.org
 wget -O /etc/cinder/cinder.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/cinder.conf
 
