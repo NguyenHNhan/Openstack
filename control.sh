@@ -1,15 +1,13 @@
-https://chat.openai.com/share/94c1a0af-0f49-43ad-afdc-7b981a6964c5
-source config.conf
 sudo apt update
 sudo apt upgrade -y
 yes | apt install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
-#MARIAPASS="123"
-echo -e "$MARIAPASS\n$MARIAPASS\ny\ny\ny\ny\n" | sudo mysql_secure_installation
+
+echo -e "123\n123\ny\ny\ny\ny\n" | sudo mysql_secure_installation
 
 apt -y install rabbitmq-server memcached python3-pymysql 
-rabbitmqctl add_user openstack $RABBITPASS
+rabbitmqctl add_user openstack 123
 #rabbitmqctl change_password openstack 123
 
 rabbitmqctl set_permissions openstack ".*" ".*" ".*" 
