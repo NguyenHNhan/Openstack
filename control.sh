@@ -34,20 +34,18 @@ sudo service apache2 restart
 su -s /bin/bash keystone -c "keystone-manage db_sync" 
 keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone 
 keystone-manage credential_setup --keystone-user keystone --keystone-group keystone 
-keystone-manage bootstrap --bootstrap-password $UOPENSTACK \
---bootstrap-admin-url http://$IPControl:5000/v3/ \
---bootstrap-internal-url http://$IPControl:5000/v3/ \
---bootstrap-public-url http://$IPControl:5000/v3/ \
+keystone-manage bootstrap --bootstrap-password 123 \
+--bootstrap-admin-url http://172.20.200.7:5000/v3/ \
+--bootstrap-internal-url http://172.20.200.7:5000/v3/ \
+--bootstrap-public-url http://172.20.200.7:5000/v3/ \
 --bootstrap-region-id RegionOne
 
 #cai dat servername
-mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
-wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/apache2.conf
+#mv /etc/apache2/apache2.conf /etc/apache2/apache2.org
+#wget -O /etc/apache2/apache2.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/apache2.conf
 
 a2enmod wsgi
 systemctl restart apache2 
-
-#wget -O /etc/apache2/sites-available/keystone.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/sites-available/keystone.conf
 
 export OS_PROJECT_DOMAIN_NAME=default
 export OS_USER_DOMAIN_NAME=default
@@ -71,7 +69,7 @@ su -s /bin/bash glance -c "glance-manage db_sync"
 systemctl restart glance-api 
 systemctl enable glance-api 
 
-apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient 
+apt -y install nova-api nova-conductor nova-scheduler nova-novncproxy placement-api python3-novaclient nova-compute nova-compute-kvm 
 
 wget -O /etc/nova/nova.conf https://github.com/NguyenHNhan/Openstack/raw/main/conf/control/nova.conf
 
