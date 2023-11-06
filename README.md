@@ -1,4 +1,6 @@
 sudo ip route add 172.29.249.0/22 via 192.168.64.128
+ovs-vsctl --may-exist add-br br-provider -- set bridge br-provider \
+  protocols=OpenFlow13
 
 ip address add 172.29.248.1/22 dev br-vlan
 
