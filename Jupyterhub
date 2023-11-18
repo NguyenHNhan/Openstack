@@ -1,0 +1,15 @@
+ sudo chmod 755 /etc/kubernetes/certs
+ sudo chown core:core /etc/kubernetes/certs
+ sudo setenforce 0
+ sudo chmod 644 /etc/kubernetes/admin.conf
+ sudo chmod 644 /etc/kubernetes/certs/admin.crt /etc/kubernetes/certs/admin.key /etc/kubernetes/certs/ca.crt
+ sudo chown core:core /etc/kubernetes/certs/admin.crt /etc/kubernetes/certs/admin.key /etc/kubernetes/certs/ca.crt
+ kubectl cluster-info
+
+curl -LO https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz
+
+tar -zxvf helm-v3.8.0-linux-amd64.tar.gz
+
+sudo mv linux-amd64/helm /usr/local/bin/helm
+
+export PATH=/usr/local/bin:$PATH
